@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For my best girlfriend ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,105,180,0.7);
+    animation:fade 1.5s;
+    width:90%;
+    max-width:420px;
+    position: relative;
+}
+
+h1{
+    font-size:2.2em;
+    margin-bottom:15px;
+    text-shadow:0 0 10px white;
+}
+
+p{
+    font-size:1.1em;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    color:#ff5f9e;
+    font-size:1em;
+    cursor:pointer;
+    transition:0.3s;
+    display:block;
+    margin:20px auto 0 auto; /* center horizontal + jarak atas */
+}
+
+button:hover{
+    background:#ff5f9e;
+    color:white;
+    box-shadow:0 0 25px rgba(255,105,180,1);
+}
+
+.heart{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-100vh);opacity:0;}
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+<!-- MUSIK -->
+<audio id="music" loop>
+    <source src="LOVEE.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CARD UTAMA -->
+<div class="card" id="card">
+    <h1 id="title">Hi babe ❤️</h1>
+    <p id="text">I have something to tell you...</p>
+    
+    <!-- TOMBOL SATU -->
+    <button onclick="nextPage()">Click me ❤️</button>
+</div>
+
+<script>
+let page = 0;
+
+const pages = [
+    {title:"Hi ❤️", text:"I have something to tell you"},
+    {title:"For you ✨", text:"Why are you so cute."},
+    {title:"Honest 💕", text:"I feel comfortable when I think about you, and that's not an ordinary thing."},
+    {title:"My feelings 🤍", text:"It may be simple, but sincere from the deepest heart."},
+    {title:"Thanks, My future wife 🌹", text:"Thank you for coming and making my day more colorful, I hope we will always be together."},
+    {title:"I love you ❤️", text:"And I will always keep this feeling, now and forever."}
+];
+
+function nextPage(){
+    // Mainkan musik saat tombol pertama ditekan
+    if(page === 0){
+        document.getElementById("music").play();
+    }
+
+    page++;
+    if(page >= pages.length){
+        page = 0;
+    }
+
+    document.getElementById("title").innerText = pages[page].title;
+    document.getElementById("text").innerText = pages[page].text;
+
+    createHeart();
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),5000);
+}
+</script>
+
+</body>
+</html>
